@@ -1,6 +1,7 @@
 package com.github.songnick;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.graphics.PointF;
@@ -43,6 +44,14 @@ public class FloatWindow implements View.OnTouchListener{
         mWindowPosition = new Point();
         mTouchPosition = new PointF();
 
+        mFloatView.findViewById(R.id.start_activity).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, LocalService.TipActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     /**

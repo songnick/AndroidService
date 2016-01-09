@@ -7,4 +7,14 @@
         android:layout_height="wrap_content"
         android:text="浮动窗口"
         android:clickable="false"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/start_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="启动Activity"/>
+    </LinearLayout>
 </LinearLayout>

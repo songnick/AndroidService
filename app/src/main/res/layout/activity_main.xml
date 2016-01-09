@@ -13,11 +13,17 @@
         android:id="@+id/start_service"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="start service"/>
+        android:text="start_service"/>
     <Button
         android:id="@+id/bind_service"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="bind service"
+        android:text="bind_service"
         android:layout_below="@+id/start_service"/>
+    <Button
+        android:id="@+id/finish_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="finish_app"
+        android:layout_below="@+id/bind_service"/>
 </RelativeLayout>

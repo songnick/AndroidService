@@ -15,6 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LocalService$TipActivity"
+            android:theme="@android:style/Theme.Holo.Light.Dialog"
+            ></activity>
         <service android:name=".LocalService"
             android:exported="false"></service>
     </application>

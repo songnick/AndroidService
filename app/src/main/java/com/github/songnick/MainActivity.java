@@ -11,6 +11,8 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+    private boolean mNeedFinished = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,14 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.bind_service).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bindService(new Intent(MainActivity.this, LocalService.class), mServiceCon,BIND_AUTO_CREATE);
+                bindService(new Intent(MainActivity.this, LocalService.class), mServiceCon, BIND_AUTO_CREATE);
+            }
+        });
+        findViewById(R.id.finish_app).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mNeedFinished = true;
+                onBackPressed();
             }
         });
     }
@@ -37,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         public void onServiceConnected(ComponentName name, IBinder service) {
             mBinder = (LocalService.LocalBinder)service;
             Log.d("", " binder ");
-            mBinder.binderTest();
+            mBinder.showTip();
         }
 
         @Override
@@ -45,4 +54,14 @@ public class MainActivity extends AppCompatActivity {
             mBinder = null;
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        if (mNeedFinished){
+            super.onBackPressed();
+        }else {
+            moveTaskToBack(true);
+        }
+
+    }
 }

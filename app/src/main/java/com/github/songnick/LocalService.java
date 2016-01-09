@@ -1,13 +1,16 @@
 package com.github.songnick;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.Service;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 /**
  * Created by SongNick on 15/12/22.
@@ -27,7 +30,8 @@ public class LocalService extends Service {
         Log.d(TAG, " id " + Thread.currentThread().getId());
 //        NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
         mNotification = new Notification();
-        mNotification.contentView = null;
+        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.notification_layout);
+        mNotification.contentView = remoteViews;
         startForeground(1, mNotification);
     }
 
@@ -57,10 +61,18 @@ public class LocalService extends Service {
         return new LocalBinder();
     }
 
-    public static class LocalBinder extends Binder{
-        public void binderTest(){
-            Log.d(TAG, " local binder test");
 
+    public static class LocalBinder extends Binder{
+        public void showTip(){
+            Log.d(TAG, " local binder test");
+        }
+    }
+
+    public static class TipActivity extends Activity{
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.tip_activity_layout);
         }
     }
 }
