@@ -33,13 +33,14 @@ public class LocalService extends Service {
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.notification_layout);
         mNotification.contentView = remoteViews;
         startForeground(1, mNotification);
+
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, " onStartCommand intent " + intent);
         if (intent == null)
-            throw new IllegalStateException("hahha");
+            throw new IllegalStateException("null intent");
         mFloatWindow.show();
         return super.onStartCommand(intent, flags, startId);
     }
