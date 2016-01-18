@@ -8,15 +8,25 @@ import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 
-public class MainActivity extends AppCompatActivity {
+import com.github.songnick.utils.CameraUtils;
+import com.github.songnick.view.ChuShouSurfaceView;
+
+public class MainActivity extends AppCompatActivity{
 
     private boolean mNeedFinished = false;
+    private CameraUtils mCameraUtils = null;
+    private ChuShouSurfaceView mSurfaceView = null;
+    private CheckBox mCameraCheckBox = null;
+    private boolean mIsOpened = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        int id = getTaskId();
+        Log.d("", " current task id MainActivity == " + id);
         findViewById(R.id.start_service).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,6 +47,29 @@ public class MainActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+        findViewById(R.id.show_window).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LocalService.class);
+                intent.setAction(LocalService.ACTION_SHOW_FLOATING_WINDOW);
+                startService(intent);
+            }
+        });
+        findViewById(R.id.hide_window).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LocalService.class);
+                intent.setAction(LocalService.ACTION_HIDE_FLOATING_WINDOW);
+                startService(intent);
+
+            }
+        });
+        findViewById(R.id.stop_service).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopService(new Intent(MainActivity.this, LocalService.class));
+            }
+        });
     }
 
     private LocalService.LocalBinder mBinder = null;
@@ -55,13 +88,4 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    @Override
-    public void onBackPressed() {
-        if (mNeedFinished){
-            super.onBackPressed();
-        }else {
-            moveTaskToBack(true);
-        }
-
-    }
 }

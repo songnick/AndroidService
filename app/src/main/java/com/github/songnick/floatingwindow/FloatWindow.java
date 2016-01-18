@@ -1,4 +1,4 @@
-package com.github.songnick;
+package com.github.songnick.floatingwindow;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+
+import com.github.songnick.LocalService;
+import com.github.songnick.R;
 
 /**
  * Created by SongNick on 15/12/27.
@@ -49,6 +52,7 @@ public class FloatWindow implements View.OnTouchListener{
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, LocalService.TipActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 mContext.startActivity(intent);
             }
         });
@@ -79,6 +83,7 @@ public class FloatWindow implements View.OnTouchListener{
     public void hide(){
         if (mIsShowed){
             mWindowManager.removeViewImmediate(mFloatView);
+            mIsShowed = false;
         }
     }
 

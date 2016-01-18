@@ -13,7 +13,7 @@
         android:id="@+id/start_service"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="start_service"/>
+        android:text="启动Service"/>
     <Button
         android:id="@+id/bind_service"
         android:layout_width="wrap_content"
@@ -25,5 +25,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="finish_app"
+        android:visibility="gone"
         android:layout_below="@+id/bind_service"/>
+    <Button
+        android:id="@+id/show_window"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示浮动窗口"
+        android:layout_below="@+id/finish_app"/>
+    <Button
+        android:id="@+id/hide_window"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="隐藏浮动窗口"
+        android:layout_below="@+id/show_window"/>
+    <Button
+        android:id="@+id/stop_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="停止Service"
+        android:layout_below="@+id/hide_window"/>
 </RelativeLayout>
